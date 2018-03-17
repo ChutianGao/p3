@@ -9,6 +9,6 @@ class BillController extends Controller
      */
     public function index()
     {
-        return 'Bill Form Displays Here.';
+        return view('calculator')->with(["title"=>"Bill Splitter"]);
     }
 }
