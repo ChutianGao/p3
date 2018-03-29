@@ -11,7 +11,10 @@ class BillController extends Controller
      */
     public function index()
     {
-        return view('calculator');
+        return view('calculator')->with([
+            'charged' => '',
+            'roundUp' => false,
+        ]);
     }
 
     /**
@@ -19,6 +22,12 @@ class BillController extends Controller
      */
     public function calculate(Request $request)
     {
+
+        $this->validate($request, [
+            'charged'      => 'required',
+            'numberPeople' => 'required|numeric',
+            'tipsRate'     => 'required',
+        ]);
 
         $charged      = $request->input('charged', null);
         $numberPeople = $request->input('numberPeople', null);
