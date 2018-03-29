@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    <h2 class="text-center">{{ $title }}</h2>
+    <h2 class="text-center">Bill Splitter</h2>
 @endsection
 
 @section('errors')
@@ -13,7 +13,8 @@
 
 @push('body')
     <!-- Calculator Form -->
-    <form action="index.php" method="POST">
+    <form action="" method="POST">
+        {{ csrf_field() }}
         <div class="row">
             <div class="col-sm-offset-2 col-md-offset-2 col-lg-offset-3 col-xs-12 col-sm-8 col-md-8 col-lg-6">
                 <div class="input-group">
@@ -22,7 +23,7 @@
                            name="charged"
                            class="form-control"
                            placeholder="Total"
-                           value=''
+                           value="{{ $charged }}"
                            step="0.01">
                 </div>
                 <br>
@@ -51,7 +52,7 @@
             <p class="text-center">
                 <br><label class="checkbox-inline"><input type="checkbox"
                                                           name="roundUp"
-                                                          value="yes" 
+                                                          {{ ($roundUp) ? 'checked' : '' }} 
                                                     >Round Up</label>
                 <br>
                 <br>

@@ -11,4 +11,6 @@
 |
 */
 
-Route::get('/', 'BillController@index');
+Route::get('/', 'BillController@calculate');
+Route::post('/', 'BillController@calculate');
+
