@@ -4,6 +4,7 @@
 
 ## Outside resources
 Bootstrap 3.3: <https://getbootstrap.com/docs/3.3/getting-started/>
+Foobook Example: <https://github.com/susanBuck/foobooks>
 
 ## Code style divergences
 + When definning variables, I used multiple spaces before `=`  in order to make the values are aligned. 
