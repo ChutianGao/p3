@@ -33,12 +33,7 @@ class BillController extends Controller
         $charged      = $request->input('charged', null);
         $numberPeople = $request->input('numberPeople', null);
         $tipsRate     = $request->input('tipsRate', '');
-        $hasRoundUp   = $request->has('roundUp');
-        $roundUp      = '';
-
-        if ($hasRoundUp) {
-            $roundUp = 'yes';
-        }
+        $roundUp      = $request->has('roundUp');    
 
         $this->validate($request, [
             'charged'      => 'required|numeric',
@@ -48,8 +43,6 @@ class BillController extends Controller
 
         //------------------------------
         # Calculate
-
-
         $tipsRateFloat    = floatval($tipsRate) / 100;
         $tips             = $charged * $tipsRateFloat;
         $tipsPp           = $tips / $numberPeople;
@@ -65,7 +58,7 @@ class BillController extends Controller
         $chargedPp = number_format($chargedPp, 2, '.', '');
         $totalPp   = number_format($totalPp, 2, '.', '');
 
-        if ($roundUp == 'yes') {
+        if ($roundUp) {
             $totalPp = round($totalPp);
         }
     

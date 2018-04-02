@@ -48,11 +48,11 @@
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-scale"></i></span>
                     <select name="tipsRate" class="form-control">
-                        <option value="" >Satisfaction</option>
-                        <option value="15" >Normal Lunch - 15%</option>
-                        <option value="18" >Normal Dinner - 18%</option>
-                        <option value="20" >Amazing - 20%</option>
-                        <option value="10" >Not Satisfied - 10%</option>
+                        <option value="17" {{ ($tipsRate == '17') ? 'selected' : ''}}>Satisfied - 17% (Default)</option>
+                        <option value="15" {{ ($tipsRate == '15') ? 'selected' : ''}}>Normal Lunch - 15%</option>
+                        <option value="18" {{ ($tipsRate == '18') ? 'selected' : ''}}>Normal Dinner - 18%</option>
+                        <option value="20" {{ ($tipsRate == '20') ? 'selected' : ''}}>Amazing - 20%</option>
+                        <option value="10" {{ ($tipsRate == '10') ? 'selected' : ''}}>Not Satisfied - 10%</option>
                     </select>
                 </div>
             </div>
@@ -61,7 +61,7 @@
             <p class="text-center">
                 <br><label class="checkbox-inline"><input type="checkbox"
                                                           name="roundUp"
-                                                          value="yes"
+                                                          {{ ($roundUp) ? 'checked' : '' }}
                                                     >Round Up</label>
                 <br>
                 <br>
