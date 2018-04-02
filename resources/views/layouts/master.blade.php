@@ -15,13 +15,13 @@
 </head>
 <body>
 <div class="container">
-    <section>
+    <div>
         @yield('title')
-    </section>
+    </div>
     
-    <section>
+    <div>
         @yield('errors')
-    </section>
+    </div>
 
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
 
