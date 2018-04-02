@@ -31,7 +31,7 @@
                     <input type="number"
                            name="charged"
                            class="form-control"
-                           placeholder="Total"
+                           placeholder="Charged Total"
                            value="{{ ($charged) ? $charged : old('charged') }}"
                            step="0.01">
                 </div>
