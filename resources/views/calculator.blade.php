@@ -32,7 +32,7 @@
                            name="charged"
                            class="form-control"
                            placeholder="Total"
-                           value="{{ $charged }}"
+                           value="{{ ($charged) ? $charged : old('charged') }}"
                            step="0.01">
                 </div>
                 <br>
@@ -42,7 +42,7 @@
                            name="numberPeople"
                            class="form-control"
                            placeholder="Numer of People"
-                           value=''>
+                           value="{{ ($numberPeople) ? $numberPeople : old('numberPeople') }}">
                 </div>
                 <br>
                 <div class="input-group">
@@ -61,7 +61,7 @@
             <p class="text-center">
                 <br><label class="checkbox-inline"><input type="checkbox"
                                                           name="roundUp"
-                                                          {{ ($roundUp) ? 'checked' : '' }} 
+                                                          value="yes"
                                                     >Round Up</label>
                 <br>
                 <br>
@@ -78,9 +78,9 @@
                     <div class="well">                        
                         <h4>All Together</h4>
                         <p>
-                            <label>Charged:</label> $ <br>
-                            <label>Tips:</label> $ <br>
-                            <label>Total:</label> $ 
+                            <label>Charged:</label> $ {{ $charged }}<br>
+                            <label>Tips:</label> $ {{ $tips }}<br>
+                            <label>Total:</label> $ {{ $total }}
                         </p>
                     </div>
                 </div>
@@ -88,9 +88,9 @@
                     <div class="well">                        
                         <h4>Per Person</h4>
                         <p>
-                            <label>Charged:</label> $ <br>
-                            <label>Tips:</label> $ <br>
-                            <label>Owns:</label> $ 
+                            <label>Charged:</label> $ {{ $chargedPp}}<br>
+                            <label>Tips:</label> $ {{ $tipsPp}}<br>
+                            <label>Owns:</label> $ {{ $totalPp}}
                         </p>
                     </div>
                 </div>

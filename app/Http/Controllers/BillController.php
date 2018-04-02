@@ -12,8 +12,15 @@ class BillController extends Controller
     public function index()
     {
         return view('calculator')->with([
-            'charged' => '',
-            'roundUp' => false,
+            'charged'      => '',
+            'numberPeople' => '',
+            'tipsRate'     => '',
+            'roundUp'      => '',
+            'tips'         => '',
+            'total'        => '',
+            'tipsPp'       => '',
+            'chargedPp'    => '',
+            'totalPp'      => '',
         ]);
     }
 
@@ -23,24 +30,57 @@ class BillController extends Controller
     public function calculate(Request $request)
     {
 
+        $charged      = $request->input('charged', null);
+        $numberPeople = $request->input('numberPeople', null);
+        $tipsRate     = $request->input('tipsRate', '');
+        $hasRoundUp   = $request->has('roundUp');
+        $roundUp      = '';
+
+        if ($hasRoundUp) {
+            $roundUp = 'yes';
+        }
+
         $this->validate($request, [
-            'charged'      => 'required',
+            'charged'      => 'required|numeric',
             'numberPeople' => 'required|numeric',
             'tipsRate'     => 'required',
         ]);
 
-        $charged      = $request->input('charged', null);
-        $numberPeople = $request->input('numberPeople', null);
-        $tipsRate     = $request->input('tipsRate', null);
-        $hasRoundUp   = $request->has('roundUp');
-        $roundUp      = false;
-        if ($hasRoundUp) {
-            $roundUp = true;
+        //------------------------------
+        # Calculate
+
+
+        $tipsRateFloat    = floatval($tipsRate) / 100;
+        $tips             = $charged * $tipsRateFloat;
+        $tipsPp           = $tips / $numberPeople;
+        $total            = $charged + $tips;
+        $chargedPp        = $charged / $numberPeople;
+        $totalPp          = $total / $numberPeople;
+
+        // Format Numbers
+        $charged   = number_format($charged, 2, '.', '');
+        $tips      = number_format($tips, 2, '.', '');
+        $tipsPp    = number_format($tipsPp, 2, '.', '');
+        $total     = number_format($total, 2, '.', '');
+        $chargedPp = number_format($chargedPp, 2, '.', '');
+        $totalPp   = number_format($totalPp, 2, '.', '');
+
+        if ($roundUp == 'yes') {
+            $totalPp = round($totalPp);
         }
+    
+        //----------------
 
         return view('calculator')->with([
-            'charged' => $charged,
-            'roundUp' => $roundUp,
+            'charged'      => $charged,
+            'numberPeople' => $numberPeople,
+            'tipsRate'     => $tipsRate,
+            'roundUp'      => $roundUp,
+            'tips'         => $tips,
+            'total'        => $total,
+            'tipsPp'       => $tipsPp,
+            'chargedPp'    => $chargedPp,
+            'totalPp'      => $totalPp,
         ]);
     }
 }
