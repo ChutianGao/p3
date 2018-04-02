@@ -22,7 +22,7 @@
 
 @push('body')
     <!-- Calculator Form -->
-    <form action="" method="POST">
+    <form method="POST">
         {{ csrf_field() }}
         <div class="row">
             <div class="col-sm-offset-2 col-md-offset-2 col-lg-offset-3 col-xs-12 col-sm-8 col-md-8 col-lg-6">
